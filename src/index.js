@@ -23,6 +23,43 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Adicionar rota raiz de boas-vindas:
+
+app.get('/', (req, res) => {
+  res.json({
+    name: 'WhatsApp Automation API',
+    version: '1.0.0',
+    status: 'online',
+    message: 'API funcionando corretamente! 🚀',
+    endpoints: {
+      health: '/health',
+      auth: {
+        register: 'POST /api/auth/register',
+        login: 'POST /api/auth/login'
+      },
+      whatsapp: {
+        connect: 'POST /api/whatsapp/connect',
+        status: 'GET /api/whatsapp/status',
+        disconnect: 'POST /api/whatsapp/disconnect'
+      },
+      automations: {
+        list: 'GET /api/automations',
+        create: 'POST /api/automations',
+        update: 'PUT /api/automations/:id',
+        delete: 'DELETE /api/automations/:id'
+      },
+      messages: {
+        send: 'POST /api/messages/send',
+        schedule: 'POST /api/messages/schedule',
+        scheduled: 'GET /api/messages/scheduled'
+      },
+      contacts: 'GET /api/contacts',
+      stats: 'GET /api/stats/dashboard'
+    },
+    documentation: 'https://github.com/seu-usuario/whatsapp-backend'
+  });
+});
+
 // ============================================
 // ROTAS DE AUTENTICAÇÃO
 // ============================================
